@@ -23,7 +23,13 @@ public class Exercise_02 {
 
     public static void main(String[] args) {
 
-        // write code here
+        int val = 10;
+        double dble = val;
+        System.out.println("dble: " + dble);
+
+        double newdble = 10.5;
+        int val1 = (int) newdble;
+        System.out.println("val1: " + val1);
 
     }
 }

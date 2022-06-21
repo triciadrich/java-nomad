@@ -10,7 +10,22 @@ class ArithmeticOperators {
 
     public static void main(String[] args) {
 
-        // write your code below
+        int val = 5;
+        int val2 = 6;
+
+        int add = val += val2;
+        int sub = val -= val2;
+        int mult = val *= val2;
+        double divide = val /= val2;
+        int modulous = val %= val2;
+
+        System.out.println("add: " + add);
+        System.out.println("subtract " + sub);
+        System.out.println("multiply " + mult);
+        System.out.println("divide " + divide);
+        System.out.println("modulus " + modulous);
+
+
 
     }
 

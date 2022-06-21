@@ -16,7 +16,16 @@ public class Exercise_01 {
 
     public static void main(String[] args) {
 
-        // write code here
+        int integer = 1;
+        double dble = 30.5;
+        float flt = 300.6f;
+        char letter = 'a';
+
+        System.out.println("integer: " + integer);
+        System.out.println("dble: " + dble);
+        System.out.println("flt: " + flt);
+        System.out.println("letter: " + letter);
+
 
     }
 }
