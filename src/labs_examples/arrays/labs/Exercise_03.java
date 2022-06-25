@@ -18,6 +18,20 @@ package labs_examples.arrays.labs;
 public class Exercise_03 {
 
     public static void main(String[] args) {
-        
+        int[][] array = new int [5][5];//declaration of 2d array
+        int count = 0;
+        for (int i = 0; i < array.length; i++){
+            for (int j = 0; j < array[i].length; j++){
+                array[i][j] = count + 3;
+                count = count + 3;
+            }
+        }
+
+        for(int[] outer : array){
+            for (int val: outer){
+                System.out.print(val + "-");
+            }
+            System.out.println();
+        }
     }
 }

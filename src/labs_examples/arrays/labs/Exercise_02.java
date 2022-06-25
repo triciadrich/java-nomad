@@ -12,10 +12,19 @@ public class Exercise_02 {
 
     public static void main(String[] args) {
 
-        int[] array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    index(2);
 
-        // write code here
 
+
+
+    }
+    public static void index(int num){
+    int[] array = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        for(int i = 0; i < array.length; i ++ ){
+            if (array[i] == num){
+                System.out.println(i);
+            }
+        }
 
     }
 }
