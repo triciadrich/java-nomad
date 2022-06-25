@@ -1,5 +1,9 @@
 package labs_examples.arrays.labs;
 
+import videos_source_code.arrays.ArrayLists;
+
+import java.util.ArrayList;
+
 /**
  *  ArrayLists
  *
@@ -10,4 +14,17 @@ package labs_examples.arrays.labs;
  *
  */
 public class Exercise_07 {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add("I'd rather be coding!");
+        list.add("Wait...I am coding!");
+
+        if(!list.isEmpty()){
+            for (String s : list){
+                System.out.println(s);
+            }
+        }
+
+    }
 }

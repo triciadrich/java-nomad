@@ -28,18 +28,21 @@ public class Exercise_07 {
         char vowelFound = 'p';
 
 
-            while (i <= word.length() && found == false) {
+            while (i < word.length() && found == false) {
 
                 if (word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i' || word.charAt(i) == 'o' || word.charAt(i) == 'u') {
                     found = true;
                     vowelFound = word.charAt(i);
                     System.out.println("Word: " + word + " First Vowel: " + vowelFound);
+                    break;
                 }
                 i++;
 
 
             }
-
+            if (!found){
+                System.out.println("not found");
+            }
 
 
 

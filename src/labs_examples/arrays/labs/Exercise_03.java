@@ -22,8 +22,8 @@ public class Exercise_03 {
         int count = 0;
         for (int i = 0; i < array.length; i++){
             for (int j = 0; j < array[i].length; j++){
-                array[i][j] = count + 3;
-                count = count + 3;
+                array[i][j] = count +=3;
+//                count += 3;
             }
         }
 
