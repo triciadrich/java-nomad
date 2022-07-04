@@ -13,7 +13,8 @@ public class MethodTraining {
         tricia.addAge(tricia);
         System.out.println(tricia.toString());
         System.out.println(countc("worde"));
-        System.out.println(isPrime(2));
+        System.out.println(isPrime(12));
+        System.out.println(isPrime(11));
         System.out.println(Arrays.toString(highestLowest(new int[]{11, 2, 3, 10})));
         System.out.println(zeroMaxNum(100,5,4).size());
         System.out.println(Arrays.toString(reverse(new int[]{5, 4, 3, 2, 1})));
@@ -31,7 +32,6 @@ public class MethodTraining {
         for (int i = 0; i < nums.length; i ++){
             if (nums[i] > large){
                 large = nums[i];
-                i++;
             }
 
         }
@@ -58,7 +58,7 @@ public class MethodTraining {
             if (word.charAt(i) != 'a' && word.charAt(i) != 'e' && word.charAt(i) != 'i' && word.charAt(i) != 'o' && word.charAt(i) != 'u') {
                 count++;
             }
-            i++;
+
         }
 
         return  count;
@@ -67,27 +67,26 @@ public class MethodTraining {
     // 5) Write a method that will determine whether or not a number is prime
 
     public static boolean isPrime(int num){
-        boolean isPrime = false;
+
            for (int i = 2; i<num/2; i++){
                if (num%i ==0){
-                   isPrime = false;
+                   return false;
                }
-               isPrime = true;
            }
 
 
-        return isPrime;
+        return true;
     }
 
     //6) Write a method that will return a small array containing the highest and lowest numbers in a given numeric array,
     //            which is passed in as an argument
 
     public static int[] highestLowest(int [] array){
-        int min= 2147483647;
-        int max = 0;
+        int min= array[0];
+        int max = array[0];
 
 
-        for(int i = 0; i < array.length; i ++) {
+        for(int i = 1; i < array.length; i ++) {
             if (array[i] > max) {
                 max = array[i];
 
@@ -98,8 +97,8 @@ public class MethodTraining {
 
 
         }
-        int[] smallLarge = {min,max};
-        return smallLarge;
+        return new int[]{min,max};
+
     }
 
  //7) Write a method that takes 3 arguments (int maxNum, int divisor1, int divisor2) and returns an Integer Arraylist.
@@ -140,7 +139,7 @@ public class MethodTraining {
         int age = 41;
         String name = "";
 
-        public Person(String name, int age) {
+        public Person(String name, int age) {//pass by value
             this.age = age;
             this.name = name;
 
