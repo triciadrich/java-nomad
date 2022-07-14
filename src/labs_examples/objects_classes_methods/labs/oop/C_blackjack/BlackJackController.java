@@ -41,8 +41,10 @@ public class BlackJackController {
                 hand1.handValue();
                 System.out.println(player);
                 if (hand1.underOver()) {
-                    System.out.println("Do you want another card? True/false");
+                    System.out.println("Busted");
+                    continue;
                 }
+                System.out.println("Do you want another card? true/false");
                 if (computer.computerAi()) {
                     deck.deal(computer);
                     dealer.handValue();
