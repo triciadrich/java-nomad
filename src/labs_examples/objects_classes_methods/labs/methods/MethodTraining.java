@@ -11,7 +11,7 @@ public class MethodTraining {
         Person tricia = new Person("Tricia", 41);
         Person brian = new Person("Brian", 43);
         tricia.addAge(tricia);
-        System.out.println(tricia.toString());
+        System.out.println(tricia);
         System.out.println(countc("worde"));
         System.out.println(isPrime(12));
         System.out.println(isPrime(11));

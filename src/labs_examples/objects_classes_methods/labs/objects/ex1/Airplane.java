@@ -39,7 +39,7 @@ public class Airplane {
                 Wings wings1 = new Wings("Dual", 100);
                 Type type1 = new Type("Commercial");
                 Airplane air = new Airplane(30,30,engine1,seats1,wings1,type1);
-        System.out.println(air.toString());
+        System.out.println(air);
     }
 
 }
