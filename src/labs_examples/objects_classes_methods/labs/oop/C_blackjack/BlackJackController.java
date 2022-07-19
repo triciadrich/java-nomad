@@ -9,15 +9,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BlackJackController {
+    public static int gamesPlayed;
+    public static int computerWins;
+    public static int playerWins;
+
+
     public static void main(String[] args) {
+
         playBlackJack();
 
 
     }
 
     public static void playBlackJack() {
-        Deck deck = new Deck();
-        deck.populate();
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter Name");
         String name = scan.nextLine();
@@ -25,6 +30,14 @@ public class BlackJackController {
         Hand dealer = new Hand();
         Player player = new Player(name, hand1, 10);
         Player computer = new Player("Computer", dealer, 0);
+
+        play(scan, hand1, dealer, player, computer);
+    }
+
+    private static void play(Scanner scan, Hand hand1, Hand dealer, Player player, Player computer) {
+        gamesPlayed++;
+        Deck deck = new Deck();
+        deck.populate();
         deck.deal(player);
         deck.deal(player);
         hand1.handValue();
@@ -66,12 +79,26 @@ public class BlackJackController {
         System.out.println(player);
         System.out.println(computer);
 
-        if(player.hand.handValue > computer.hand.handValue && player.hand.handValue <= 21){
+        if (player.hand.handValue > computer.hand.handValue && player.hand.handValue <= 21) {
             System.out.println("You win!!!");
-        } else if (hand1.underOver() && dealer.underOver())  {
+            playerWins++;
+        } else if (hand1.underOver() && dealer.underOver()) {
             System.out.println("You both busted");
-        }else {
+        } else {
             System.out.println("Computer wins");
+            computerWins++;
+        }
+
+        System.out.println("Games played: " + gamesPlayed);
+        System.out.println("You've won: " + playerWins + " games");
+        System.out.println("Computer has won " + computerWins + " games");
+
+        System.out.println("Do you want to play again?");
+        boolean playAgain = scan.nextBoolean();
+        if (playAgain) {
+            hand1.clearHand();
+            dealer.clearHand();
+            play(scan, hand1 , dealer , player, computer);
         }
 
     }

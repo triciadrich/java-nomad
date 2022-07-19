@@ -33,6 +33,10 @@ public class Hand {//hand data
         return getHandValue() > 21;
 
     }
+
+    public void clearHand(){
+        cards.clear();
+    }
     public Hand() {
     }
 

@@ -6,6 +6,7 @@ public class Player {
     Hand hand;
     int potValue; //the amount of money they have
 
+
     public Player(String name, Hand hand, int potValue) {
         this.name = name;
         this.hand = hand;
