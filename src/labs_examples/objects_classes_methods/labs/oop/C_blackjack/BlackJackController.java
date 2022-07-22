@@ -2,10 +2,6 @@ package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 
 
 
-import labs_examples.objects_classes_methods.labs.objects.Ex3.Computer;
-
-import javax.lang.model.type.DeclaredType;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BlackJackController {
@@ -84,7 +80,7 @@ public class BlackJackController {
             playerWins++;
         } else if (hand1.underOver() && dealer.underOver()) {
             System.out.println("You both busted");
-        } else {
+        } else  {
             System.out.println("Computer wins");
             computerWins++;
         }
