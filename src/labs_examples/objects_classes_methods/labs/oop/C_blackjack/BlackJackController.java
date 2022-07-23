@@ -22,80 +22,101 @@ public class BlackJackController {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter Name");
         String name = scan.nextLine();
+        System.out.println("How much money would you like to start with?");
+        int money = scan.nextInt();
         Hand hand1 = new Hand();
         Hand dealer = new Hand();
-        Player player = new Player(name, hand1, 10);
-        Player computer = new Player("Computer", dealer, 0);
+        Player player = new Player(name, hand1, money);
+        Player computer = new Player("Computer", dealer,money);
 
         play(scan, hand1, dealer, player, computer);
     }
 
     private static void play(Scanner scan, Hand hand1, Hand dealer, Player player, Player computer) {
-        gamesPlayed++;
-        Deck deck = new Deck();
-        deck.populate();
-        deck.deal(player);
-        deck.deal(player);
-        hand1.handValue();
-        deck.deal(computer);
-        deck.deal(computer);
-        dealer.handValue();
-        System.out.println(player);
-        System.out.println("Do you want another card? true/false");
-        boolean yesNo = scan.nextBoolean();
+        boolean playagain =true;
+        while(playagain) {
 
-        if (yesNo) {
-            do {
-                deck.deal(player);
-                hand1.handValue();
-                System.out.println(player);
-                if (hand1.underOver()) {
-                    System.out.println("Busted");
-                    continue;
-                }
-                System.out.println("Do you want another card? true/false");
-                if (computer.computerAi()) {
+            gamesPlayed++;
+            System.out.println("How much would you like to bet?");
+            int bet = scan.nextInt();
+            Deck deck = new Deck();
+            deck.populate();
+            deck.deal(player);
+            deck.deal(player);
+            hand1.handValue();
+            deck.deal(computer);
+            deck.deal(computer);
+            dealer.handValue();
+            System.out.println(player);
+            System.out.println("Do you want another card? true/false");
+            boolean yesNo = scan.nextBoolean();
+
+            if (yesNo) {
+                do {
+                    deck.deal(player);
+                    hand1.handValue();
+                    System.out.println(player);
+                    if (hand1.underOver()) {
+                        System.out.println("Busted");
+                        continue;
+                    }
+                    System.out.println("Do you want another card? true/false");
+                    if (computer.computerAi()) {
+                        deck.deal(computer);
+                        dealer.handValue();
+                        System.out.println("Computer took another card");
+                    }
+
+                    yesNo = scan.nextBoolean();
+                } while (yesNo && !hand1.underOver());
+
+
+            } else if (computer.computerAi()) {
+                do {
                     deck.deal(computer);
                     dealer.handValue();
-                    System.out.println("Computer took another card");
-                }
+                    System.out.println("computer took another card");
+                } while (computer.computerAi() && !dealer.underOver());
 
-                yesNo = scan.nextBoolean();
-            } while (yesNo && !hand1.underOver());
+            }
+            System.out.println(player);
+            System.out.println(computer);
+
+            if((hand1.underOver() && dealer.underOver())){
+                System.out.println("You both busted");
+            } else if (hand1.underOver()) {
+                System.out.println("You busted computer wins");
+                computerWins++;
+                player.potValue -= bet;
+
+            } else if (dealer.underOver()) {
+                System.out.println("You win!");
+                playerWins++;
+                computer.potValue -= bet;
+
+            } else if (player.hand.handValue > computer.hand.handValue) {
+                playerWins++;
+                computer.potValue -= bet;
+                System.out.println("You win!" +player);
+            } else if (computer.hand.handValue > player.hand.handValue) {
+                computerWins++;
+                player.potValue -= bet;
+                System.out.println("Computer wins" + player + computer);
+
+            }
 
 
-        } else if (computer.computerAi()) {
-            do {
-                deck.deal(computer);
-                dealer.handValue();
-                System.out.println("computer took another card");
-            } while (computer.computerAi() && !dealer.underOver());
+            System.out.println("Games played: " + gamesPlayed);
+            System.out.println("You've won: " + playerWins + " games");
+            System.out.println("Computer has won " + computerWins + " games");
 
+            System.out.println("Do you want to play again?");
+            boolean playAgain = scan.nextBoolean();
+            if (playAgain) {
+                hand1.clearHand();
+                dealer.clearHand();
+
+            }
         }
-        System.out.println(player);
-        System.out.println(computer);
-
-        if (player.hand.handValue > computer.hand.handValue && player.hand.handValue <= 21) {
-            System.out.println("You win!!!");
-            playerWins++;
-        } else if (hand1.underOver() && dealer.underOver()) {
-            System.out.println("You both busted");
-        } else  {
-            System.out.println("Computer wins");
-            computerWins++;
-        }
-
-        System.out.println("Games played: " + gamesPlayed);
-        System.out.println("You've won: " + playerWins + " games");
-        System.out.println("Computer has won " + computerWins + " games");
-
-        System.out.println("Do you want to play again?");
-        boolean playAgain = scan.nextBoolean();
-        if (playAgain) {
-            hand1.clearHand();
-            dealer.clearHand();
-            play(scan, hand1 , dealer , player, computer);
-        }
-
     }
 }
