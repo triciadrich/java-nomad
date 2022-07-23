@@ -12,7 +12,16 @@ import java.util.Arrays;
 class Example {
 
     public static void main(String[] args) {
+        try{
+            array();
+        }catch(ArrayIndexOutOfBoundsException exc){
+            System.out.println(exc.toString());
+        }
+    }
 
+    public static void array() throws ArrayIndexOutOfBoundsException{
+        int [] array = {1,2,4,5};
+        System.out.println(array[10]);
     }
 
 }
