@@ -18,6 +18,7 @@ public class Exercise_02 {
     public static void main(String[] args) {
         BufferedReader reader = null;
         PrintWriter writer = null;
+        BufferedReader reader2 = null;
 
 
         try{
@@ -46,6 +47,33 @@ public class Exercise_02 {
                 ex.printStackTrace();
             }
             writer.close();
+        }
+
+        try{
+            reader2 = new BufferedReader(new FileReader("C:\\Users\\Owner\\Documents\\CodingNomads\\labs\\online-java-fundamentals\\src\\labs_examples\\input_output\\labs\\ex2copy.txt"));
+
+              int s2;
+
+            while((s2 = reader2.read()) != -1) {
+                char c2 = (char) s2;
+                if (s2 == '-') {
+                    c2 = 'a';
+                    System.out.print(c2);
+                } else if (s2 == '~') {
+                    c2 = 'e';
+                    System.out.print(c2);
+                } else {
+                    System.out.print(c2);
+                }
+            }
+        }catch(IOException exc3){
+            System.out.println("error " + exc3.getMessage() );
+        }finally {
+            try{
+                reader2.close();
+            }catch (IOException ioexc){
+                ioexc.printStackTrace();
+            }
         }
     }
 }
