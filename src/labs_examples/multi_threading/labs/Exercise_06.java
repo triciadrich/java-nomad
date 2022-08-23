@@ -12,48 +12,70 @@ import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
 
 public class Exercise_06 {
     public static void main(String[] args) {
-        count100 t1 = new count100("odd", true);
-        count100 t2 = new count100("even", false);
+        Counter cnt = new Counter();
+
+        CntThread oddCount = new CntThread(" Odd Count", cnt, true);
+        CntThread evenCount = new CntThread("Even Count", cnt, false);
+
+        try {
+            oddCount.thread.join();
+            evenCount.thread.join();
+        } catch (InterruptedException e){
+            System.out.println("Main thread interrupted");
+        }
+    }
+}
+
+class CntThread implements Runnable{
+
+    Thread thread;
+    boolean odd;
+    Counter counter;
+
+    public CntThread(String name, Counter cnt, boolean odd){
+        thread = new Thread(this, name);
+        this.odd = odd;
+        this.counter = cnt;
+        thread.start();
     }
 
-    public static class count100 implements Runnable {
-        Thread thread;
-        boolean odd;
-        static int currentCount = 1;
-
-
-        public count100(String name, boolean odd) {
-            thread = new Thread(this, name);
-            this.odd = odd;
-            System.out.println(thread.getName());
-            thread.start();
-
-
+    @Override
+    public void run() {
+        while (counter.currentCount < 100){
+//            System.out.print(thread.getName() + ": ");
+            counter.count(this.odd, thread.getName());
         }
+    }
+}
+
+class Counter{
+
+    // This is the variable we will be using to count
+    int currentCount = 1;
+
+    public synchronized void count(boolean odd, String name){
+
+        // Is the current count odd or even?
+//        boolean countIsOdd = (currentCount%2==1);
 
 
-        public synchronized void count() {
-
-            while (currentCount < 100) {
-                if (currentCount % 2 == 0 && thread.getName().equals("even")) {
-                    System.out.println(thread.getName() + " " + currentCount);
-                    currentCount++;
-
-                } else if (currentCount % 2 == 1 && thread.getName().equals("odd")) {
-                    System.out.println(thread.getName() + " " + currentCount);
-                    currentCount++;
-
-                }
-
-
+        // Keep doing this while currentCount < 100
+//        while (currentCount < 100) {
+        // Is the current count odd or even?
+        boolean countIsOdd = (currentCount%2==1);
+        try {
+            // If these don't match, then we need to wait
+            if (odd != countIsOdd) {
+                System.out.print(name + " waiting...");
+                wait();
             }
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted");
         }
 
-        @Override
-        public void run() {
-            count();
-
-        }
+        System.out.println(name + ": Counting to " + currentCount++);
+        notifyAll();
+//        }
     }
 }
 

@@ -13,6 +13,7 @@ public class Exercise_01 <T>{
     private T val;
     private T val2;
 
+
     public Exercise_01(T val, T val2) {
         this.val = val;
         this.val2 = val2;

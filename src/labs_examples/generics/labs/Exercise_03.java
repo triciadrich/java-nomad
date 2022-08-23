@@ -33,7 +33,7 @@ public class Exercise_03 {
     }
 
     public static <T extends Number, V extends T> double sum(T val1, V val2){//sum off 2 numbers returned as double
-        return (Double)val2.doubleValue() + val1.doubleValue();
+        return val2.doubleValue() + val1.doubleValue();
     }
 
     public static <T> void count(Collection<T> collection){
