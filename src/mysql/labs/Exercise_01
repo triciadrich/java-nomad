@@ -29,12 +29,26 @@
  *
  *      7.) Write queries (and paste them below) for each of the following tasks:
  *          a. select all students
+                select * from students;
  *          b. select all teacher who teach "Math" (choose a subject you included)
+                select * from teachers where subject ="Math";
  *          c. use a join query to select all students with a certain teacher
+                select * from students
+                join teachers_students ON student_id = teachers_students.student_id
+                join teachers ON teacher_id = teachers_students.teacher_id
+                where teachers.first_name = "Debbie";
  *          d. use a join query to select all students with taking a certain subject
+                select * from students
+                join students_courses ON course_id = students_courses.student_id
+                join courses on courses.id = students_courses.course_id
+                where courses.name ="Math101";
  *          e. update a record in the student table
+                    UPDATE students SET email = "updated@gmail.com" where students.id = "1";
  *          f. add a record to the teacher table
- *
+ *              INSERT INTO teachers
+                (first_name, last_name, subject)
+                VALUES
+                ("Stanley","Walker", "Marketing");
  *       8.) Export the schema to a dump file and copy it to this folder.
  *
  *
